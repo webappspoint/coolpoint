@@ -1,19 +1,3 @@
-<?php
-// List of the 10 richest people in the world
-$richest_people = [
-    ["name" => "Bernard Arnault", "net_worth" => "$230B", "company" => "LVMH"],
-    ["name" => "Elon Musk", "net_worth" => "$200B", "company" => "Tesla, SpaceX"],
-    ["name" => "Jeff Bezos", "net_worth" => "$180B", "company" => "Amazon"],
-    ["name" => "Mark Zuckerberg", "net_worth" => "$160B", "company" => "Meta"],
-    ["name" => "Bill Gates", "net_worth" => "$130B", "company" => "Microsoft"],
-    ["name" => "Warren Buffett", "net_worth" => "$120B", "company" => "Berkshire Hathaway"],
-    ["name" => "Larry Ellison", "net_worth" => "$110B", "company" => "Oracle"],
-    ["name" => "Steve Ballmer", "net_worth" => "$100B", "company" => "Microsoft"],
-    ["name" => "Mukesh Ambani", "net_worth" => "$95B", "company" => "Reliance"],
-    ["name" => "Larry Page", "net_worth" => "$90B", "company" => "Google"],
-];
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -57,21 +41,44 @@ $richest_people = [
     <div class="container">
         <h2>Top 10 Richest People in the World</h2>
         <table>
-            <tr>
-                <th>#</th>
-                <th>Name</th>
-                <th>Net Worth</th>
-                <th>Company</th>
-            </tr>
-            <?php foreach ($richest_people as $index => $person): ?>
+            <thead>
                 <tr>
-                    <td><?php echo $index + 1; ?></td>
-                    <td><?php echo htmlspecialchars($person['name']); ?></td>
-                    <td><?php echo htmlspecialchars($person['net_worth']); ?></td>
-                    <td><?php echo htmlspecialchars($person['company']); ?></td>
+                    <th>#</th>
+                    <th>Name</th>
+                    <th>Net Worth</th>
+                    <th>Company</th>
                 </tr>
-            <?php endforeach; ?>
+            </thead>
+            <tbody id="richest-list"></tbody>
         </table>
     </div>
+
+    <script>
+        const richestPeople = [
+            { name: "Bernard Arnault", netWorth: "$230B", company: "LVMH" },
+            { name: "Elon Musk", netWorth: "$200B", company: "Tesla, SpaceX" },
+            { name: "Jeff Bezos", netWorth: "$180B", company: "Amazon" },
+            { name: "Mark Zuckerberg", netWorth: "$160B", company: "Meta" },
+            { name: "Bill Gates", netWorth: "$130B", company: "Microsoft" },
+            { name: "Warren Buffett", netWorth: "$120B", company: "Berkshire Hathaway" },
+            { name: "Larry Ellison", netWorth: "$110B", company: "Oracle" },
+            { name: "Steve Ballmer", netWorth: "$100B", company: "Microsoft" },
+            { name: "Mukesh Ambani", netWorth: "$95B", company: "Reliance" },
+            { name: "Larry Page", netWorth: "$90B", company: "Google" }
+        ];
+
+        const richestList = document.getElementById("richest-list");
+
+        richestPeople.forEach((person, index) => {
+            const row = document.createElement("tr");
+            row.innerHTML = `
+                <td>${index + 1}</td>
+                <td>${person.name}</td>
+                <td>${person.netWorth}</td>
+                <td>${person.company}</td>
+            `;
+            richestList.appendChild(row);
+        });
+    </script>
 </body>
 </html>
